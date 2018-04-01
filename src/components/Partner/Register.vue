@@ -34,6 +34,8 @@
         if (!this.ready) return
         contract.registerAgent().then(res => {
           console.log(res)
+          // TODO remove fake id
+          this.ref = 3
         }).catch(e => {
           console.log(e)
           if (e instanceof Error) {

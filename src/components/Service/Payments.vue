@@ -1,7 +1,6 @@
 <template lang="pug">
   .card
-    paper-table(title="Payments" :data="payments")
-
+    paper-table(title="Payments" :data="payments" :columns="columns")
 
 </template>
 
@@ -14,12 +13,13 @@
       PaperTable
     },
     async beforeMount () {
-      this.payments = await contract.payments()
-      console.log('this.payments', this.payments)
+      const agent = 0
+      this.payments = await contract.agentPayments(agent)
     },
     data () {
       return {
-        payments: []
+        payments: [],
+        columns: ['amount', 'service', 'agent']
       }
     }
   }
