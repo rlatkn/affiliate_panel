@@ -9,6 +9,16 @@ const SidebarStore = {
       path: '/service/register'
     },
     {
+      name: 'Payments',
+      icon: 'ti-panel',
+      path: '/service/payments'
+    },
+    {
+      name: 'Register partner',
+      icon: 'ti-panel',
+      path: '/partner/register'
+    },
+    {
       name: 'Dashboard',
       icon: 'ti-panel',
       path: '/admin/overview'

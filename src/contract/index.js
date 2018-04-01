@@ -32,5 +32,25 @@ export default {
         resolve(result)
       })
     })
+  },
+  registerAgent () {
+    init()
+    return new Promise((resolve, reject) => {
+      contractInstance.registerAgent((error, result) => {
+        console.log('result', result)
+        if (error) reject(error)
+        resolve(result)
+      })
+    })
+  },
+  payments (service) {
+    init()
+    return new Promise((resolve, reject) => {
+      contractInstance.payments(service, 1, (error, result) => {
+        console.log('result', result)
+        if (error) reject(error)
+        resolve(web3.fromWei(result[0].toNumber(), 'ether'))
+      })
+    })
   }
 }

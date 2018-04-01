@@ -12,7 +12,9 @@ import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 
 // Service pages
-import Register from 'components/Service/Register'
+import RegisterService from 'components/Service/Register'
+import Payments from 'components/Service/Payments'
+import RegisterPartner from 'components/Partner/Register'
 
 const routes = [
   {
@@ -26,7 +28,25 @@ const routes = [
     children: [
       {
         path: 'register',
-        component: Register
+        component: RegisterService
+      },
+      {
+        path: 'payments',
+        component: Payments
+      }
+    ]
+  },
+  {
+    path: '/partner',
+    component: DashboardLayout,
+    children: [
+      {
+        path: 'register',
+        component: RegisterPartner
+      },
+      {
+        path: 'payments',
+        component: Payments
       }
     ]
   },
