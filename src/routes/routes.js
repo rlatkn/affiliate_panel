@@ -11,11 +11,24 @@ import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 
+// Service pages
+import Register from 'components/Service/Register'
+
 const routes = [
   {
     path: '/',
     component: DashboardLayout,
     redirect: '/admin/overview'
+  },
+  {
+    path: '/service',
+    component: DashboardLayout,
+    children: [
+      {
+        path: 'register',
+        component: Register
+      }
+    ]
   },
   {
     path: '/admin',

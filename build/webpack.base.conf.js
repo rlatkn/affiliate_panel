@@ -3,6 +3,7 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var webpack = require('webpack')
+var Dotenv = require('dotenv-webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -12,6 +13,11 @@ var webpackConfig = {
   entry: {
     app: './src/main.js'
   },
+  plugins: [
+    new Dotenv({
+      safe: true
+    })
+  ],
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -19,13 +25,6 @@ var webpackConfig = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
- /* plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      jquery: "jquery"
-    })
-  ],*/
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     modules: [
@@ -35,6 +34,7 @@ var webpackConfig = {
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       'src': resolve('src'),
+      '@': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components')
     }
@@ -66,6 +66,10 @@ var webpackConfig = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader'
       }
     ]
   }
@@ -81,8 +85,8 @@ var esLintRule = {
   }
 }
 
-if(process.env.ENABLE_ESLINT && process.env.ENABLE_ESLINT === 'true'){
-  webpackConfig.module.rules.unshift(esLintRule) //add eslint
+if (process.env.ENABLE_ESLINT && process.env.ENABLE_ESLINT === 'true') {
+  webpackConfig.module.rules.unshift(esLintRule) // add eslint
 }
 
 module.exports = webpackConfig
